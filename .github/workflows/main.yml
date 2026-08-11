@@ -18,11 +18,11 @@ jobs:
         distribution: 'temurin'
         cache: gradle
 
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew || true
+    - name: Generate Gradle Wrapper v8.4 (Mencegah Bentrok Versi)
+      run: gradle wrapper --gradle-version 8.4
 
-    - name: Build Debug APK with Gradle
-      run: gradle assembleDebug
+    - name: Build Debug APK with Gradle Wrapper
+      run: ./gradlew assembleDebug
 
     - name: Upload Debug APK
       uses: actions/upload-artifact@v4
