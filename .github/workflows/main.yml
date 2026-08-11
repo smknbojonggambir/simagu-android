@@ -18,7 +18,13 @@ jobs:
         distribution: 'temurin'
         cache: gradle
 
-    - name: Generate Gradle Wrapper v8.4 (Mencegah Bentrok Versi)
+    - name: Pasang Logo Aplikasi
+      run: |
+        mkdir -p app/src/main/res/drawable
+        cp logo.jpg app/src/main/res/drawable/logo.jpg
+        sed -i 's/<application/<application android:icon="@drawable\/logo" android:roundIcon="@drawable\/logo"/g' app/src/main/AndroidManifest.xml
+
+    - name: Generate Gradle Wrapper v8.4
       run: gradle wrapper --gradle-version 8.4
 
     - name: Build Debug APK with Gradle Wrapper
